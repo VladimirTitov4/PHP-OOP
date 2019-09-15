@@ -24,4 +24,3 @@ echo $basket->getAll();
 $order = new Order(new Db());
 echo $order->getOne(1);
 
-var_dump($order);
