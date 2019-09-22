@@ -1,26 +1,30 @@
-<?php
+<?
+session_start();
 
 use app\models\Basket;
-use app\models\Order;
 use app\models\Product;
-use app\models\user;
+use app\models\User;
 use app\engine\Db;
 
-
-include "../engine/Autoload.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/../config/config.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/../engine/Autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
+$controllerName = $_GET['c'] ?: 'product';
+$actionName = $_GET['a'];
 
-$product = new Product(new Db());
-echo $product->getOne(3);
+$controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName)  . "Controller";
 
-$user = new User(new Db());
-echo $user->getAll();
+if (class_exists($controllerClass)) {
+    $controller = new $controllerClass();
+    $controller->runAction($actionName);
+} else {
+    echo "Не правильный контроллер";
+}
 
-$basket = new Basket(new Db());
-echo $basket->getAll();
 
-$order = new Order(new Db());
-echo $order->getOne(1);
+/**
+ * @var Product $product
+ */
 

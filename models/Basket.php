@@ -4,16 +4,19 @@
 namespace app\models;
 
 
-class Basket extends Model
+class Basket extends DbModel
 {
     public $id;
-    public $id_session;
-    public $id_good;
-    public $qty;
+    public $session_id;
+    public $product_id;
 
-    public function getTableName()
-    {
+    public static function getTableName() {
         return 'basket';
     }
 
+    public static function addToBasket($id) {
+        $id = (int)$id;
+        $id_session = session_id();
+
+    }
 }
