@@ -40,9 +40,9 @@ abstract class DbModel extends Models
         $sql = "DELETE FROM {$tableName} WHERE id = :id";
         return Db::getInstance()->execute($sql, ['id' => $this->id]);
     }
-    
-    public function update() {
 
+    public function update() {
+        // 
     }
 
     public function save() {
