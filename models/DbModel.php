@@ -10,6 +10,14 @@ use app\engine\Db;
 
 abstract class DbModel extends Models
 {
+    public static function getLimit($from, $to) {
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM {$tableName} LIMIT ?, ?";
+        $stm = Db::getInstance()->prepare($sql); // Так и не понял что нужно поставить перед ->prepare. На все пишет, "call to undefined method"
+        $stm->bindValue(1, $from, \PDO::PARAM_INT);
+        $stm->bindValue(2, $to, \PDO::PARAM_INT);
+        $stm->execute();
+    }
 
     public function getWere($name, $value) {
 
@@ -32,7 +40,6 @@ abstract class DbModel extends Models
 
         Db::getInstance()->execute($sql, $params);
         $this->id = Db::getInstance()->lastInsertId();
-        var_dump($sql);
     }
 
     public function delete() {
@@ -42,7 +49,7 @@ abstract class DbModel extends Models
     }
 
     public function update() {
-        // 
+
     }
 
     public function save() {
@@ -60,21 +67,13 @@ abstract class DbModel extends Models
         return Db::getInstance()->queryObject($sql, ['id' => $id], static::class);
     }
 
+
     public static function getAll() {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName}";
         return Db::getInstance()->queryAll($sql);
     }
 
-    public static function getLimit($from, $to) {
-        $tableName = static::getTableName();
-        $sql = ("SELECT * FROM {$tableName} LIMIT {$from}, {$to}");
-        $pdoStatement = Db::getInstance()->getConnection()->prepare($sql);
-        $pdoStatement->bindParam(':from', $from, PDO::PARAM_INT);
-        $pdoStatement->bindParam(':to', $to, PDO::PARAM_INT);
-        var_dump($pdoStatement);
-        die();
-    }
 
 
 }

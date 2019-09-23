@@ -3,22 +3,17 @@
 namespace app\controllers;
 
 use app\models\Product;
-use app\models\Basket;
 
 class ProductController extends Controller
 {
+
     public function actionIndex() {
         echo $this->render('index');
     }
 
     public function actionCatalog() {
-        $catalog = Product::getAll();
+        $catalog = Product::getAll();  // Пробовал реализовать getLimit - не получилось.
         echo $this->render('catalog', ['catalog' => $catalog]);
-    }
-
-    public function actionBasket() {
-        $basket = Basket::getAll();
-        echo $this->render('basket', ['basket' => $basket]);
     }
 
     public function actionCard() {

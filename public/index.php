@@ -28,3 +28,8 @@ if (class_exists($controllerClass)) {
  * @var Product $product
  */
 
+//$test = new User("User", 123);
+//
+//$test->insert();
+//
+//var_dump($test);
