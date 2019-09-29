@@ -4,21 +4,37 @@
 namespace app\models;
 
 
+use app\engine\Db;
+
 class Basket extends DbModel
 {
     public $id;
     public $session_id;
-    public $product_id;
+    public $id_good;
+    public $qty;
 
-    public function __construct($id = null, $session_id = null, $product_id = null)
+    /**
+     * Basket constructor.
+     * @param $session_id
+     * @param $id_good
+     * @param $qty
+     */
+    public function __construct($session_id, $id_good, $qty)
     {
-        $this->id = $id;
         $this->session_id = $session_id;
-        $this->product_id = $product_id;
+        $this->id_good = $id_good;
+        $this->qty = $qty;
     }
 
-    public static function getTableName() {
+    public static function getTableName()
+    {
         return 'basket';
     }
 
+    public static function getBasket($session)
+    {
+        $sql = "SELECT basket.id as basket_id, goods.id as goods_id, goods.name as name, goods.price as price, qty 
+    FROM `basket`, `goods` WHERE basket.id_good = goods.id  AND session_id = :session";
+        return Db::getInstance()->queryAll($sql, ['session' => $session]);
+    }
 }

@@ -10,26 +10,13 @@ use app\engine\Db;
 
 abstract class DbModel extends Models
 {
-    public static function getLimit($from, $to) {
-        $tableName = static::getTableName();
-        $sql = "SELECT * FROM {$tableName} LIMIT ?, ?";
-        $stm = Db::getInstance()->prepare($sql); // Так и не понял что нужно поставить перед ->prepare. На все пишет, "call to undefined method"
-        $stm->bindValue(1, $from, \PDO::PARAM_INT);
-        $stm->bindValue(2, $to, \PDO::PARAM_INT);
-        $stm->execute();
-    }
-
-    public function getWere($name, $value) {
-
-    }
-
     public function insert() {
         $params = [];
         $columns = [];
         $tableName = static::getTableName();
         //TODO переделать цикл по state чтобы избавиться от условия
         foreach ($this as $key => $value) {
-            if ($key === "id") continue;
+            if ($key === "id" OR $key == "state") continue;
             $params[":{$key}"] = $value;
             $columns[] = "`$key`";
         }
@@ -49,7 +36,23 @@ abstract class DbModel extends Models
     }
 
     public function update() {
+        $tableName = static::getTableName();
+        $setString = '';
+        foreach ($this as $key => $value) {
+            if ($key !== 'id' && $key !== 'state' && $this->state["$key"]) {
+                $keys[] = $key . "=:" . $key;       // format keys:  keyName=:keyName
+                $allKeys[] = $key;
+            }
+        }
 
+        foreach ($allKeys as $someKey ) {
+            $changedValue = $someKey;
+            $params["$someKey"] = $this->getValue($changedValue);
+        }
+        $setString = implode(", ", $keys);      // sql string after SET
+        $params['id'] = $this->id;
+        $sql = "UPDATE {$tableName} SET {$setString} WHERE id = :id";
+        Db::getInstance()->execute($sql, $params);
     }
 
     public function save() {
@@ -67,13 +70,27 @@ abstract class DbModel extends Models
         return Db::getInstance()->queryObject($sql, ['id' => $id], static::class);
     }
 
-
     public static function getAll() {
         $tableName = static::getTableName();
         $sql = "SELECT * FROM {$tableName}";
         return Db::getInstance()->queryAll($sql);
     }
 
+    public static function getLimit($qty) {
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE 5 LIMIT ?";
+        return DB::getInstance()->executeLimit($sql, $qty);
+    }
 
+    public function getWhere($field, $value) {
+        $tableName = static::getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE `$field`=:$field";
+        return Db::getInstance()->queryObject($sql, ["$field"=>$value], static::class);
+    }
 
+    public static function getCountWhere($field, $value) {
+        $tableName = static::getTableName();
+        $sql = "SELECT count(*) as count FROM {$tableName} WHERE `$field`=:$field";
+        return Db::getInstance()->queryOne($sql, ["$field"=>$value])['count'];
+    }
 }

@@ -12,8 +12,10 @@ class ProductController extends Controller
     }
 
     public function actionCatalog() {
-        $catalog = Product::getAll();  // Пробовал реализовать getLimit - не получилось.
-        echo $this->render('catalog', ['catalog' => $catalog]);
+        $page = (int)$_GET['page'] + 5;
+        $catalog = Product::getLimit($page);
+        echo $this->render('catalog', ['catalog' => $catalog,
+                                                'page' => $page]);
     }
 
     public function actionCard() {

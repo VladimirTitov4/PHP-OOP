@@ -1,3 +1,3 @@
 <a href="/"> Главная </a>
-<a href="/?c=product&a=catalog"> Каталог </a>
-<a href="/?c=basket&a=list"> Корзина </a>
+<a href="/product/catalog/"> Каталог </a>
+<a href="/basket/"> Корзина <span id="count"><?=$count?></span></a>
