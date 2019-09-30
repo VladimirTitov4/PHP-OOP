@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Сен 29 2019 г., 18:39
--- Версия сервера: 8.0.15
--- Версия PHP: 7.1.22
+-- Время создания: Сен 30 2019 г., 13:51
+-- Версия сервера: 5.7.19
+-- Версия PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -46,7 +46,23 @@ INSERT INTO `basket` (`id`, `session_id`, `id_good`, `qty`) VALUES
 (261, 'pvglklct2kqn1on6vj7hsufnissafgb7', 2, 1),
 (262, 'pvglklct2kqn1on6vj7hsufnissafgb7', 2, 1),
 (263, 'pvglklct2kqn1on6vj7hsufnissafgb7', 2, 1),
-(264, 'pvglklct2kqn1on6vj7hsufnissafgb7', 1, 1);
+(264, 'pvglklct2kqn1on6vj7hsufnissafgb7', 1, 1),
+(265, 'dol8jtg9esosqni174ekbqe6n33vkd9r', 3, 1),
+(266, 'dol8jtg9esosqni174ekbqe6n33vkd9r', 2, 1),
+(267, 'dol8jtg9esosqni174ekbqe6n33vkd9r', 3, 1),
+(268, 'dol8jtg9esosqni174ekbqe6n33vkd9r', 3, 1),
+(269, 'dol8jtg9esosqni174ekbqe6n33vkd9r', 3, 1),
+(270, 'dol8jtg9esosqni174ekbqe6n33vkd9r', 3, 1),
+(271, 'dol8jtg9esosqni174ekbqe6n33vkd9r', 3, 1),
+(272, 'dol8jtg9esosqni174ekbqe6n33vkd9r', 3, 1),
+(273, 'sieosr2ho2saqu2ifii1rj5k3pmgho3t', 3, 1),
+(274, 'sieosr2ho2saqu2ifii1rj5k3pmgho3t', 3, 1),
+(275, 'sieosr2ho2saqu2ifii1rj5k3pmgho3t', 3, 1),
+(276, 'sieosr2ho2saqu2ifii1rj5k3pmgho3t', 3, 1),
+(277, 'sieosr2ho2saqu2ifii1rj5k3pmgho3t', 3, 1),
+(278, 'gdt4mahi03halsv3j97lgcoa7hgg4pqc', 2, 1),
+(279, 'gdt4mahi03halsv3j97lgcoa7hgg4pqc', 3, 1),
+(280, 'gdt4mahi03halsv3j97lgcoa7hgg4pqc', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -175,7 +191,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `login`, `pass`, `hash`) VALUES
-(1, 'admin', '$2y$10$GAh95KWqFf1Fw4YyH/BCnuODYbJ1Mln78vDuOIwj7WQvChhR8QcX.', '21255787435d641ba0296111.41509116');
+(1, 'admin', '$2y$10$SA9jLv7rQmDclYf/61jqOOIczn1ADVssgvsMuPcjpSFEEM6a0hP8C', '16261822905d90ddd75080a6.39548732');
 
 --
 -- Индексы сохранённых таблиц
@@ -219,32 +235,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `basket`
 --
 ALTER TABLE `basket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=281;
 --
 -- AUTO_INCREMENT для таблицы `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT для таблицы `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-COMMIT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

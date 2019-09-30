@@ -14,7 +14,6 @@ class Product extends DbModel
      * @param null $name
      */
 
-    //TODO Вариант как сделать "умный" update, переделать под __set чтобы небыло дублирования (опционально)
     public function setName($name): void
     {
         $this->name = $name;
@@ -76,4 +75,8 @@ class Product extends DbModel
         return 'goods';
     }
 
+    public static function seen() {
+
+        $sql = "UPDATE goods SET seen = seen + 1 WHERE id = :id";
+    }
 }

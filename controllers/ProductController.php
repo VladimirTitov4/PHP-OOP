@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\engine\Request;
 use app\models\Product;
 
 class ProductController extends Controller
@@ -22,5 +23,10 @@ class ProductController extends Controller
         $id = $_GET['id'];
         $product = Product::getOne($id);
         echo $this->render('card', ['product' => $product]);
+    }
+
+    public function actionMore() {
+        $request =  (new Request())->getParams();
+        var_dump($request);
     }
 }
