@@ -5,14 +5,17 @@ use app\models\Basket;
 use app\models\Product;
 use app\models\User;
 use app\engine\Db;
+use app\engine\Request;
 
 include $_SERVER['DOCUMENT_ROOT'] . "/../config/config.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/../engine/Autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
-$controllerName = $_GET['c'] ?: 'product';
-$actionName = $_GET['a'];
+$request = new Request();
+
+$controllerName = $request->getControllerName() ?: 'product';
+$actionName = $request->getActionName();
 
 $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName)  . "Controller";
 
@@ -24,7 +27,20 @@ if (class_exists($controllerClass)) {
 }
 
 
+
+
+
+
+
 /**
  * @var Product $product
  */
+
+//$product = new Product();
+//$product = Product::getOne(10);
+//
+//$product->setName("new new new Product");
+//$product->setDescription("very very good");
+//$product->setPrice(1000);
+//$product->save();
 

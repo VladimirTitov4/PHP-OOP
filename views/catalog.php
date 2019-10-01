@@ -1,13 +1,17 @@
 <div class="container">
 <?foreach ($catalog as $item):?>
-    <a href="/?c=product&a=card&id=<?=$item['id']?>">
+
         <div class="gallery">
+            <a href="/product/card/?id=<?=$item['id']?>">
                 <p><?=$item['name']?></p>
                 <img src="<?= IMAGES_DIR_SMALL . $item['name']?>" alt=""><br>
                 <p>Просмотрено <?=$item['seen']?> раз</p>
                 <p>Цена <?=$item['price']?> руб</p>
-            <button class="buy" data-id="<?=$item['id']?>">Купить</button>
+            </a>
+            <button data-id="<?= $item['id'] ?>" class="buy">Купить</button>
         </div>
-    </a>
+
 <?endforeach;?>
+    <a href="/product/catalog/<?=$page?>"><div class="pagination">Показать ещё</div></a>
 </div>
+

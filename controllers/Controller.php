@@ -1,7 +1,8 @@
 <?php
-
-
 namespace app\controllers;
+
+use app\models\Basket;
+use app\models\User;
 
 abstract class Controller
 {
@@ -16,7 +17,7 @@ abstract class Controller
         if (method_exists($this, $method)) {
             $this->$method();
         } else {
-            echo "404";
+            echo "Метод не найден";
         }
     }
 
@@ -24,7 +25,11 @@ abstract class Controller
         if ($this->useLayouts) {
             return $this->renderTemplate("layouts/{$this->layout}", [
                 'content' => $this->renderTemplate($template, $params),
-                'menu' => $this->renderTemplate('menu')
+                'auth' => User::isAuth(),
+                'username' => User::getName(),
+                'menu' => $this->renderTemplate('menu', [
+                    'count' => Basket::getCountWhere('session_id', session_id())
+                ])
             ]);
         } else {
             return $this->renderTemplate($template, $params);
