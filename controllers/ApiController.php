@@ -21,8 +21,13 @@ class ApiController extends Controller
     }
 
     public function actionDeleteBasket() {
-        $response = (new Request())->getParams();
-        var_dump($response); // не понимаю почему сюда не попадаю?
+        $id = (new Request())->getParams()['id'];
+        $session = session_id();
+
+        $basket = Basket::getOne($id);
+        if ($session == $basket->session_id)
+            $basket->delete();
+
 
         $response = [
             'result' => 1,

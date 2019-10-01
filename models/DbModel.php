@@ -31,7 +31,9 @@ abstract class DbModel extends Models
 
     public function delete() {
         $tableName = static::getTableName();
+
         $sql = "DELETE FROM {$tableName} WHERE id = :id";
+
         return Db::getInstance()->execute($sql, ['id' => $this->id]);
     }
 
