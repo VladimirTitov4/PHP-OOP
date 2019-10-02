@@ -41,6 +41,7 @@ class Basket extends DbModel
     public static function deleteBasket($id, $session)
     {
         $sql = "DELETE FROM basket WHERE id = :id AND session_id = :session";
+
         return Db::getInstance()->execute($sql, ['id' => $id, 'session' => $session]);
     }
 }

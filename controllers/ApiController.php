@@ -21,12 +21,7 @@ class ApiController extends Controller
     }
 
     public function actionDeleteBasket() {
-        $id = (new Request())->getParams()['id'];
-        $session = session_id();
-
-        $basket = Basket::getOne($id);
-        if ($session == $basket->session_id)
-            $basket->delete();
+        Basket::deleteBasket((Request::getInstance()->getParams()['id']), session_id());
 
 
         $response = [
