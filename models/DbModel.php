@@ -23,6 +23,8 @@ abstract class DbModel extends Models
         $columns = implode(", ", $columns);
         $values = implode(", ", array_keys($params));
 
+
+
         $sql = "INSERT INTO {$tableName} ({$columns}) VALUES ($values);";
 
         Db::getInstance()->execute($sql, $params);
@@ -35,6 +37,10 @@ abstract class DbModel extends Models
         $sql = "DELETE FROM {$tableName} WHERE id = :id";
 
         return Db::getInstance()->execute($sql, ['id' => $this->id]);
+    }
+
+    public function deleteFromBasket() {
+
     }
 
     public function update() {

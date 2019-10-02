@@ -19,7 +19,7 @@ class Basket extends DbModel
      * @param $id_good
      * @param $qty
      */
-    public function __construct($session_id, $id_good, $qty)
+    public function __construct($session_id = null, $id_good = null, $qty = null)
     {
         $this->session_id = $session_id;
         $this->id_good = $id_good;
@@ -41,7 +41,7 @@ class Basket extends DbModel
     public static function deleteBasket($id, $session)
     {
         $sql = "DELETE FROM basket WHERE id = :id AND session_id = :session";
-
+        
         return Db::getInstance()->execute($sql, ['id' => $id, 'session' => $session]);
     }
 }
