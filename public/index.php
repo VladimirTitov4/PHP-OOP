@@ -9,6 +9,7 @@ use app\engine\Request;
 
 include $_SERVER['DOCUMENT_ROOT'] . "/../config/config.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/../engine/Autoload.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/../vendor/autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
