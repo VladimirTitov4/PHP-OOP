@@ -14,7 +14,7 @@ class BasketTest extends TestCase
         $product_id = 5;
 
         $basket = new Basket($session_id, $product_id);
-        $this->assertIs($product_id, $basket->product_id);
+        $this->assertIsInt($product_id, $basket->product_id);
         $this->assertIsString($session_id, $basket->session_id);
     }
 }
