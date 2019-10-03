@@ -23,7 +23,6 @@ class ApiController extends Controller
     public function actionDeleteBasket() {
         Basket::deleteBasket((Request::getInstance()->getParams()['id']), session_id());
 
-
         $response = [
             'result' => 1,
             'count' => Basket::getCountWhere('session_id', session_id())

@@ -17,6 +17,7 @@ $request = new Request();
 
 $controllerName = $request->getControllerName() ?: 'product';
 $actionName = $request->getActionName();
+$page = $request->getParams();
 
 $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName)  . "Controller";
 
@@ -26,12 +27,6 @@ if (class_exists($controllerClass)) {
 } else {
     echo "Не правильный контроллер";
 }
-
-
-
-
-
-
 
 /**
  * @var Product $product

@@ -76,7 +76,6 @@ class Product extends DbModel
     }
 
     public static function seen() {
-
         $sql = "UPDATE goods SET seen = seen + 1 WHERE id = :id";
     }
 }
