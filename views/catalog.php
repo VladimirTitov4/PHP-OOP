@@ -12,6 +12,6 @@
         </div>
 
 <?endforeach;?>
-    <a href="/product/catalog/<?=$page?>"><div class="pagination">Показать ещё</div></a>
+    <a href="/product/catalog/page=<?=$page?>"><div class="pagination">Показать ещё</div></a>
 </div>
 

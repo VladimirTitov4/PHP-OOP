@@ -9,6 +9,7 @@ use app\engine\Request;
 
 include $_SERVER['DOCUMENT_ROOT'] . "/../config/config.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/../engine/Autoload.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/../vendor/autoload.php";
 
 spl_autoload_register([new Autoload(), 'loadClass']);
 
@@ -16,6 +17,7 @@ $request = new Request();
 
 $controllerName = $request->getControllerName() ?: 'product';
 $actionName = $request->getActionName();
+$page = $request->getParams();
 
 $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName)  . "Controller";
 
@@ -25,12 +27,6 @@ if (class_exists($controllerClass)) {
 } else {
     echo "Не правильный контроллер";
 }
-
-
-
-
-
-
 
 /**
  * @var Product $product
