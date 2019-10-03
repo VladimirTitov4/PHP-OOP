@@ -8,6 +8,10 @@ use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
 {
+    /**
+     * @dataProvider providerName
+     */
+
     public function testProduct() {
         $name = "Чай";
         $description = "Цейлонский";
@@ -17,6 +21,10 @@ class ProductTest extends TestCase
         $this->assertEquals($name, $product->name);
         $this->assertEquals($description, $product->description);
         $this->assertIsInt($price, $product->price);
+    }
+
+    public function providerName() {
+        return [['testName'], ['testName2'], ['testName3']];
     }
 }
 
