@@ -8,7 +8,7 @@ class Db
 {
     private $config = [
         'driver' => 'mysql',
-        'host' => 'localhost:3307',
+        'host' => 'localhost',
         'login' => 'titov',
         'password' => '123456',
         'database' => 'rusdom',

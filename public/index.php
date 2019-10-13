@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 use app\models\Basket;
